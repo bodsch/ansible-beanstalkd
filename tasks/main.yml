@@ -1,0 +1,52 @@
+---
+
+- name: Include OS-specific variables.
+  include_vars:
+    file: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}.{{ ansible_lsb.codename | lower }}.yml"
+    - "{{ ansible_distribution | lower }}.{{ ansible_lsb.major_release }}.yml"
+    - "{{ ansible_distribution | lower }}.yml"
+    - "{{ ansible_os_family | lower }}.yml"
+    - default.yml
+
+- debug:
+    var: "{{ item }}"
+  when: item is defined
+  loop:
+    - ansible_os_family
+    - ansible_distribution
+    - ansible_distribution_major_version
+
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: present
+    update_cache: true
+  when: ansible_os_family | lower == "redhat"
+
+- name: install beanstalkd
+  package:
+    name: beanstalkd
+    state: present
+    update_cache: true
+
+- name: setup beanstalkd config
+  template:
+    src: "{{ ansible_os_family | lower }}-beanstalkd"
+    backup: true
+    dest: "{{ beanstalkd_config_directory }}/beanstalkd"
+    group: root
+    owner: root
+    mode: 0644
+  when: custom_config_src is not defined
+
+- name: setup custom beanstalkd config
+  copy:
+    src: "{{ custom_config_src }}"
+    backup: true
+    dest: "{{ beanstalkd_config_directory }}/beanstalkd"
+    group: root
+    owner: root
+    mode: 0644
+  when: custom_config_src is defined

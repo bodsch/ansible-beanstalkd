@@ -1,0 +1,16 @@
+---
+extends: default
+rules:
+  line-length:
+    max: 170
+    level: warning
+  braces: disable
+  brackets: disable
+  line-length: disable
+  comments: disable
+
+ignore: |
+  tests/
+  molecule/
+  .molecule/
+  .travis.yml

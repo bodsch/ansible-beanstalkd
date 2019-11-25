@@ -1,0 +1,4 @@
+---
+
+systemd_lib_directory: /lib/systemd/system
+beanstalkd_config_directory: /etc/default
