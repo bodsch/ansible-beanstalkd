@@ -4,9 +4,14 @@ rules:
   line-length:
     max: 170
     level: warning
-  braces: disable
-  brackets: disable
-  line-length: disable
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  indentation:
+    spaces: 2
   comments: disable
 
 ignore: |
