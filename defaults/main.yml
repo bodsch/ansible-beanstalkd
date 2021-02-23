@@ -2,4 +2,5 @@
 
 beanstalkd_listen_addr: 127.0.0.1
 beanstalkd_listen_port: 11300
+
 beanstalkd_binlog_directory: /var/lib/beanstalkd
