@@ -1,4 +1,0 @@
----
-
-systemd_lib_directory: /usr/lib/systemd/system
-beanstalkd_config_directory: /etc/sysconfig

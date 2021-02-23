@@ -1,0 +1,19 @@
+---
+
+_systemd_lib_directory:
+  default: /lib/systemd/system
+  debian: /lib/systemd/system
+  redhat: /usr/lib/systemd/system
+
+systemd_lib_directory: "{{
+          _systemd_lib_directory[ansible_os_family | lower] |
+  default(_systemd_lib_directory['default']) }}"
+
+_config_directory:
+  default: /etc/default
+  debian: /etc/default
+  redhat: /etc/sysconfig
+
+beanstalkd_config_directory: "{{
+          _config_directory[ansible_os_family | lower] |
+  default(_config_directory['default']) }}"

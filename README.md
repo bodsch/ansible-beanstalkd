@@ -1,7 +1,17 @@
-# ansible role for beanstalkd
 
 
 Beanstalk is a simple, fast work queue. [Project at GitHub](http://kr.github.io/beanstalkd/)
+
+
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bodsch/ansible-beanstalkd/CI)][ci]
+[![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-beanstalkd)][issues]
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-beanstalkd)][releases]
+
+[ci]: https://github.com/bodsch/ansible-beanstalkd/actions
+[issues]: https://github.com/bodsch/ansible-beanstalkd/issues?q=is%3Aopen+is%3Aissue
+[releases]: https://github.com/bodsch/ansible-beanstalkd/releases
+
+
 
 ```bash
 / # beanstalkd -h

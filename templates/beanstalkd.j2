@@ -2,9 +2,20 @@
 #
 # System configuration for the beanstalkd daemon
 
-#
-# beanstalkd commandline options
-#
+{% if ansible_os_family | lower == 'debian' %}
+
+BEANSTALKD_LISTEN_ADDR={{ beanstalkd_listen_addr }}
+BEANSTALKD_LISTEN_PORT={{ beanstalkd_listen_port }}
+
+# You can use BEANSTALKD_EXTRA to pass additional options. See beanstalkd(1)
+# for a list of the available options. Uncomment the following line for
+# persistent job storage.
+
+BEANSTALKD_EXTRA="-b {{ beanstalkd_binlog_directory }}"
+
+{% endif %}
+
+{% if ansible_os_family | lower == 'redhat' %}
 
 ADDR=-l {{ beanstalkd_listen_addr }}
 PORT=-p {{ beanstalkd_listen_port }}
@@ -29,3 +40,4 @@ BINLOG_DIR=-b {{ beanstalkd_binlog_directory }}/binlog
 # The size of each binlog file.  This is rounded
 # up to the nearest 512 byte boundary.
 #BINLOG_SIZE=-s 10485760
+{% endif %}
