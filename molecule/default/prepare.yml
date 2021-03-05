@@ -17,6 +17,13 @@
       when:
         - ansible_os_family | lower in [ 'archlinux', 'debian' ]
 
+    - name: install netstat
+      package:
+        name: [ net-tools ]
+        state: present
+      when:
+        - ansible_os_family | lower in [ 'redhat' ]
+
     - debug:
         msg:
           - "os family            : {{ ansible_os_family }}"

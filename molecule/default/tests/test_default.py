@@ -63,14 +63,22 @@ def test_directories(host, dirs):
     assert d.exists
 
 
-@pytest.mark.parametrize("files", [
-    "/etc/default/beanstalkd",
-    "/usr/bin/beanstalkd",
-])
-def test_files(host, files):
-    f = host.file(files)
-    assert f.exists
-    assert f.is_file
+def test_files(host):
+
+    distribution = host.system_info.distribution
+
+    files = []
+    files.append("/usr/bin/beanstalkd")
+
+    if(distribution in ['redhat', 'centos', 'ol']):
+        files.append("/etc/sysconfig/beanstalkd")
+    else:
+        files.append("/etc/default/beanstalkd")
+
+    for fi in files:
+        f = host.file(fi)
+        assert f.exists
+        assert f.is_file
 
 
 def test_user(host):
