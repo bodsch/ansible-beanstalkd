@@ -2,6 +2,8 @@
 
 galaxy_info:
   role_name: beanstalkd
+  namespace: bodsch
+
   author: Bodo Schulz
   description: install and configure beanstalkd, a simple, fast work queue
   license: "Apache"
