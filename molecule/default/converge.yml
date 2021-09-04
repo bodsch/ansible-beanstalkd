@@ -4,8 +4,10 @@
   hosts: all
   any_errors_fatal: false
 
-  environment:
-    NETRC: ''
+#  environment:
+#    NETRC: ''
+#    http_proxy: "{{ lookup('env','HTTP_PROXY') }}"
+#    https_proxy: "{{ lookup('env','HTTPS_PROXY') }}"
 
   roles:
     - role: ansible-beanstalkd

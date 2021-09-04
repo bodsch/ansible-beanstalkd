@@ -3,6 +3,10 @@
   hosts: all
   gather_facts: true
 
+#  environment:
+#    http_proxy: "{{ lookup('env','HTTP_PROXY') }}"
+#    https_proxy: "{{ lookup('env','HTTPS_PROXY') }}"
+
   pre_tasks:
     - name: update package cache
       apt:
